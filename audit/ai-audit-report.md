@@ -497,3 +497,380 @@ Giữ nguyên toàn bộ phân tích trước đó, gồm các hạn chế và k
 
 Không tạo file mới, sinh test case, sửa source SUT hoặc thực hiện staging, commit, push. Tôi dừng để bạn review.
 ````
+
+## Tương tác 8
+
+### Tên công cụ AI
+
+ChatGPT – Codex.
+
+### Ngày và giờ
+
+2026-11-27 11:26:45 +07:00 (Asia/Saigon). Đây là thời điểm lập bản ghi trong quá trình xử lý lấy từ đồng hồ hệ thống, không phải timestamp gửi prompt hoặc hoàn tất phản hồi.
+
+### Prompt đầy đủ của sinh viên
+
+````text
+Sử dụng Agent Skill `api-test-generator` và tuân thủ AGENTS.md.
+
+
+
+API mục tiêu: `PUT /api/users/me` – FR-04.
+
+
+
+Tài liệu đầu vào:
+
+- `specs/api_specification.md`
+- `eshop-sut/README.md`
+
+Mục tiêu cuối cùng: sinh ít nhất 35 test case có ý nghĩa theo yêu cầu HW06.
+
+
+
+Chỉ thực hiện bước 1 của Skill: Phân tích hợp đồng API.
+
+
+
+Lưu kết quả bằng tiếng Việt vào `test-cases/api-01/01-contract-analysis.md`.
+
+
+
+Chưa phân tích implementation, chưa sinh test case và chưa thực hiện các bước tiếp theo.
+
+
+
+Ghi nhận tương tác vào AI Audit Report.
+
+
+
+Dừng để tôi review.
+````
+
+### Output đầy đủ của AI
+
+````text
+Tôi sẽ đọc `AGENTS.md`, tìm và đọc Skill `api-test-generator`, rồi chỉ thực hiện bước 1: phân tích hợp đồng API `PUT /api/users/me`. Tôi sẽ lưu kết quả và ghi nối tiếp tương tác vào AI Audit Report.
+
+Tôi đã đọc và đang áp dụng [Skill `api-test-generator`](/E:/KiemThu/HW06/.agents/skills/api-test-generator/SKILL.md), chỉ ở bước 1. Hợp đồng nêu rõ Bearer token, ba trường hồ sơ và quy tắc số điện thoại; required/optional, xử lý cập nhật thiếu trường, mã HTTP và response schema còn chưa được đặc tả. Tôi sẽ ghi các điểm này là `TBD`.
+
+Đã hoàn thành **bước 1** của Skill [api-test-generator](/E:/KiemThu/HW06/.agents/skills/api-test-generator/SKILL.md) và lưu tại [01-contract-analysis.md](/E:/KiemThu/HW06/test-cases/api-01/01-contract-analysis.md).
+
+Nội dung gồm hợp đồng request, quyền truy cập, tiền/hậu điều kiện, response, ánh xạ FR/SEC và API hỗ trợ. Các phần thiếu đặc tả được ghi `TBD`, đặc biệt required/optional, partial/full update và response schema.
+
+Đã ghi nối tiếp vào [AI Audit Report](/E:/KiemThu/HW06/audit/ai-audit-report.md). Chưa phân tích implementation, sinh test case hoặc thực hiện bước tiếp theo. Tôi dừng để bạn review.
+````
+
+## Tương tác 9
+
+### Tên công cụ AI
+
+ChatGPT – Codex.
+
+### Ngày và giờ
+
+2026-11-27 11:45:42 +07:00 (Asia/Saigon). Đây là thời điểm lập bản ghi trong quá trình xử lý lấy từ đồng hồ hệ thống, không phải timestamp gửi prompt hoặc hoàn tất phản hồi.
+
+### Prompt đầy đủ của sinh viên
+
+````text
+Sử dụng Agent Skill `api-test-generator` để tiếp tục bước 2: Domain Partitioning và Boundary Value Analysis cho API `PUT /api/users/me`.
+
+Lưu ý:
+
+- Phân tích tất cả tham số đầu vào.
+- Phân biệt miền hợp lệ, không hợp lệ và chưa đủ đặc tả.
+- Không tự đặt ràng buộc hoặc giá trị biên khi đặc tả không quy định.
+- Không tự đặt HTTP status code.
+
+Lưu kết quả vào `test-cases/api-01/02-domain-analysis.md`.
+
+Tuân thủ AGENTS.md, ghi nhận AI Audit và dừng để tôi review.
+````
+
+### Output đầy đủ của AI
+
+````text
+Tôi sẽ đọc `AGENTS.md`, Skill `api-test-generator` và kết quả bước 1, rồi phân tích miền và giá trị biên cho toàn bộ đầu vào của API. Tôi sẽ giữ các điểm thiếu đặc tả ở trạng thái chưa xác định, lưu kết quả và ghi nối tiếp AI Audit.
+
+Tôi đang áp dụng bước 2 của Skill. Biên định lượng có căn cứ là độ dài phone từ 10 đến 11 chữ số; các giá trị thiếu, `null`, rỗng, sai kiểu và quy tắc chuẩn hóa sẽ được tách riêng theo mức độ đủ đặc tả. Các miền token và trường dư cũng sẽ được phân tích, nhưng không tự gán mã HTTP hay cách xử lý từ chối/bỏ qua.
+
+Đã lưu [02-domain-analysis.md](/E:/KiemThu/HW06/test-cases/api-01/02-domain-analysis.md) theo bước 2 của Skill `api-test-generator`.
+
+Đã phân tích toàn bộ đầu vào, tách miền **hợp lệ / không hợp lệ / chưa đủ đặc tả**. Biên phone có căn cứ gồm độ dài **9, 10, 11, 12 chữ số**; không tự đặt biên cho các trường khác hoặc HTTP status code.
+
+Đã ghi nối tiếp [AI Audit Report](/E:/KiemThu/HW06/audit/ai-audit-report.md). Chưa sinh test case, phân tích implementation hoặc thực hiện bước tiếp theo. Tôi dừng để bạn review.
+````
+
+## Tương tác 10
+
+### Tên công cụ AI
+
+ChatGPT – Codex.
+
+### Ngày và giờ
+
+2026-11-27 11:56:49 +07:00 (Asia/Saigon). Đây là thời điểm lập bản ghi trong quá trình xử lý lấy từ đồng hồ hệ thống, không phải timestamp gửi prompt hoặc hoàn tất phản hồi.
+
+### Prompt đầy đủ của sinh viên
+
+````text
+Sử dụng Agent Skill `api-test-generator` để thực hiện bước 3: State Transition Analysis cho API `PUT /api/users/me`.
+Phân tích dựa trên đặc tả và kết quả các bước trước.
+Nếu API không có State Machine được đặc tả, hãy giải thích rõ phạm vi áp dụng của kỹ thuật này và phân tích trạng thái dữ liệu trước/sau cập nhật cùng các bất biến liên quan. Không tự tạo trạng thái hoặc quy tắc chuyển trạng thái không có căn cứ.
+Lưu kết quả vào `test-cases/api-01/03-state-analysis.md`.
+Chưa sinh test case hoàn chỉnh.
+Tuân thủ AGENTS.md, ghi nhận AI Audit và dừng để tôi review.
+````
+
+### Output đầy đủ của AI
+
+````text
+Tôi sẽ đọc `AGENTS.md`, Skill `api-test-generator` và kết quả hai bước trước, rồi thực hiện bước 3. Tôi sẽ phân biệt State Machine được đặc tả với trạng thái dữ liệu trước/sau cập nhật, lưu kết quả và ghi nối tiếp AI Audit.
+
+Đặc tả FR-04 không định nghĩa State Machine cho hồ sơ; State Machine ở FR-10 thuộc đơn hàng. Tôi sẽ phân tích snapshot dữ liệu trước/sau cập nhật và các bất biến về chủ sở hữu, role, xác thực. Partial update, rollback khi lỗi và hành vi lặp vẫn được giữ là `TBD`.
+
+Đã lưu [03-state-analysis.md](/E:/KiemThu/HW06/test-cases/api-01/03-state-analysis.md) theo bước 3 của Skill `api-test-generator`.
+
+Tài liệu giải thích FR-04 **không có State Machine được đặc tả**, phân tích dữ liệu trước/sau cập nhật, các bất biến về chủ sở hữu, role, xác thực và yêu cầu fixture. Các điểm chưa rõ về partial update, rollback, chuẩn hóa và hành vi lặp được giữ `TBD`.
+
+Đã ghi nối tiếp [AI Audit Report](/E:/KiemThu/HW06/audit/ai-audit-report.md). Chưa sinh test case hoàn chỉnh, phân tích implementation hoặc thực hiện bước tiếp theo. Tôi dừng để bạn review.
+````
+
+## Tương tác 11
+
+### Tên công cụ AI
+
+ChatGPT – Codex.
+
+### Ngày và giờ
+
+2026-11-27 12:14:22 +07:00 (Asia/Saigon). Đây là thời điểm lập bản ghi trong quá trình xử lý lấy từ đồng hồ hệ thống, không phải timestamp gửi prompt hoặc hoàn tất phản hồi.
+
+### Prompt đầy đủ của sinh viên
+
+````text
+Sử dụng Agent Skill `api-test-generator` để thực hiện bước 4: Security Analysis cho API `PUT /api/users/me`.
+
+Yêu cầu:
+
+- Phân tích SEC-01 đến SEC-07 và giải thích mức độ áp dụng của từng yêu cầu.
+- Chú trọng Authentication, Authorization, IDOR, Role Escalation, Mass Assignment và SQL Injection.
+- Xác định tình huống kiểm thử, dữ liệu đại diện và oracle có căn cứ.
+- Phân biệt những yêu cầu có thể kiểm chứng qua API với những yêu cầu cần bằng chứng bổ sung.
+- Truy vết các phân vùng và bất biến đã xác định ở bước 2–3 để tránh trùng lặp.
+
+Lưu kết quả vào `test-cases/api-01/04-security-analysis.md`.
+
+Chưa phân tích implementation, chưa sinh test case hoàn chỉnh và chưa thực thi API.
+
+Tuân thủ AGENTS.md, ghi nhận AI Audit và dừng để tôi review.
+````
+
+### Output đầy đủ của AI
+
+````text
+Tôi sẽ đọc `AGENTS.md`, Skill `api-test-generator` và kết quả các bước trước, rồi thực hiện Security Analysis. Tôi sẽ truy vết từng tình huống về phân vùng, bất biến và SEC tương ứng, đồng thời tách oracle kiểm chứng qua API khỏi phần cần bằng chứng bổ sung.
+
+SEC-02 và SEC-06 áp dụng trực tiếp; IDOR có căn cứ từ quy tắc “chỉ cập nhật hồ sơ của chính mình” trong FR-04. SEC-01 và SEC-07 nằm ngoài chức năng trực tiếp của API này; SEC-04 và SEC-05 cần bằng chứng bổ sung để kết luận đầy đủ. Tôi sẽ dùng chung tình huống role cho cả Role Escalation và Mass Assignment để tránh đếm trùng.
+
+Đã lưu [04-security-analysis.md](/E:/KiemThu/HW06/test-cases/api-01/04-security-analysis.md) theo bước 4 của Skill `api-test-generator`.
+
+Tài liệu phân tích đầy đủ **SEC-01–SEC-07**, các tình huống Authentication, Authorization, IDOR, Role Escalation, Mass Assignment và SQL Injection; kèm dữ liệu đại diện, oracle, giới hạn bằng chứng và truy vết bước 2–3 để tránh trùng lặp.
+
+Đã tách phần kiểm chứng qua API khỏi phần cần bằng chứng bổ sung và ghi nối tiếp [AI Audit Report](/E:/KiemThu/HW06/audit/ai-audit-report.md).
+
+Chưa phân tích implementation, sinh test case hoàn chỉnh, thực thi API hoặc bước tiếp theo. Tôi dừng để bạn review.
+````
+
+## Tương tác 12
+
+### Tên công cụ AI
+
+ChatGPT – Codex.
+
+### Ngày và giờ
+
+2026-11-27 12:19:26 +07:00 (Asia/Saigon). Đây là thời điểm lập bản ghi trong quá trình xử lý lấy từ đồng hồ hệ thống, không phải timestamp gửi prompt hoặc hoàn tất phản hồi.
+
+### Prompt đầy đủ của sinh viên
+
+````text
+Sử dụng Agent Skill `api-test-generator` để thực hiện bước 5: Schema Analysis cho API `PUT /api/users/me`.
+
+Yêu cầu:
+
+- Phân tích request schema, success response schema và error response schema dựa trên đặc tả.
+- Xác định các trường, kiểu dữ liệu, ràng buộc và cấu trúc có căn cứ.
+- Phân biệt rõ schema được đặc tả, dữ liệu minh họa và những nội dung TBD.
+- Xác định các checkpoint có thể sử dụng để kiểm tra response.
+- Không tự tạo schema hoặc HTTP status code khi thiếu căn cứ.
+- Truy vết kết quả phân tích các bước trước để tránh trùng lặp.
+
+Lưu kết quả vào `test-cases/api-01/05-schema-analysis.md`.
+
+Chưa phân tích implementation, chưa thực thi API và chưa sinh test case hoàn chỉnh.
+
+Tuân thủ AGENTS.md, ghi nhận AI Audit và dừng để tôi review.
+````
+
+### Output đầy đủ của AI
+
+````text
+Tôi sẽ đọc `AGENTS.md`, Skill `api-test-generator` và kết quả các bước trước, rồi thực hiện Schema Analysis. Tôi sẽ tách rõ phần được đặc tả, dữ liệu minh họa và nội dung `TBD`, đồng thời truy vết các checkpoint để tránh trùng lặp.
+
+Đặc tả có JSON minh họa cho request nhưng không nêu response thành công hoặc lỗi của `PUT /api/users/me`. Vì vậy, các checkpoint về status, Content-Type, trường bắt buộc và kiểu dữ liệu response sẽ được ghi `TBD`; các bất biến nghiệp vụ sẽ được giữ riêng, không chuyển thành assertion schema.
+
+Đã lưu [05-schema-analysis.md](/E:/KiemThu/HW06/test-cases/api-01/05-schema-analysis.md) theo bước 5 của Skill `api-test-generator`.
+
+Tài liệu phân tích request, success response và error response; tách rõ **đặc tả / minh họa / TBD**, kèm checkpoint và truy vết các bước trước. Đặc tả chưa có response cho PUT hồ sơ nên không tự đặt schema hoặc HTTP status code.
+
+Đã ghi nối tiếp [AI Audit Report](/E:/KiemThu/HW06/audit/ai-audit-report.md). Chưa phân tích implementation, thực thi API, sinh test case hoàn chỉnh hoặc thực hiện bước tiếp theo. Tôi dừng để bạn review.
+````
+
+## Tương tác 13
+
+### Tên công cụ AI
+
+ChatGPT – Codex.
+
+### Ngày và giờ
+
+2026-11-27 12:26:09 +07:00 (Asia/Saigon). Đây là thời điểm lập bản ghi trong quá trình xử lý lấy từ đồng hồ hệ thống, không phải timestamp gửi prompt hoặc hoàn tất phản hồi.
+
+### Prompt đầy đủ của sinh viên
+
+````text
+Sử dụng Agent Skill `api-test-generator` để thực hiện bước 6: Test Case Generation cho API `PUT /api/users/me`.
+
+Sử dụng toàn bộ kết quả phân tích đã được chấp nhận ở bước 1–5.
+
+Yêu cầu:
+
+- Mục tiêu sinh ít nhất 35 test case có ý nghĩa theo đề HW06.
+- Bao phủ Domain Partitioning, BVA, State/Data Analysis, Security và Schema trong phạm vi áp dụng.
+- Tuân thủ cấu trúc test case được quy định trong Skill.
+- Truy vết test case về FR/SEC và các phân tích liên quan.
+- Expected result phải có căn cứ và có khả năng kiểm chứng.
+- Phân biệt test case có oracle xác định với test case còn TBD.
+- Không tự đặt HTTP status code, response schema hoặc ràng buộc nghiệp vụ.
+- Không tạo test case trùng lặp để đạt số lượng. Nếu chưa thể đạt 35 case có ý nghĩa, báo cáo rõ nguyên nhân.
+- Mọi request dự kiến phải tuân thủ yêu cầu header X-Student-Id: 23120274 của đề bài.
+
+Lưu bản AI-generated gốc bằng tiếng Việt vào `test-cases/api-01/06-ai-generated-test-cases.md`.
+
+Thống kê số lượng test case đã sinh và số lượng case còn thiếu oracle.
+
+Chưa thực hiện bước 7, Human Audit, Extend hoặc Execute. Không phân tích implementation.
+
+Tuân thủ AGENTS.md, ghi nhận AI Audit và dừng để tôi review.
+````
+
+### Output đầy đủ của AI
+
+````text
+Tôi sẽ đọc `AGENTS.md`, Skill `api-test-generator` và toàn bộ phân tích bước 1–5 để sinh bản test case gốc. Tôi sẽ tách rõ oracle đã xác định và phần còn `TBD`, kiểm tra yêu cầu `X-Student-Id: 23120274` cho mọi request dự kiến, và báo đúng số lượng đạt được.
+
+Tôi sẽ sinh 32 case nháp có mục tiêu riêng, gộp các biến thể cùng mục tiêu thành dữ liệu DDT. Hiện chưa có căn cứ để khẳng định đạt 35 case với oracle đầy đủ: nhiều miền thiếu quy tắc xử lý và toàn bộ response schema còn `TBD`. Tôi sẽ nêu rõ phần thiếu, kèm oracle nghiệp vụ xác định cho các case xác thực, quyền sở hữu và role.
+
+Đã lưu bản gốc [06-ai-generated-test-cases.md](/E:/KiemThu/HW06/test-cases/api-01/06-ai-generated-test-cases.md).
+
+- **32 case nháp**: 7 có oracle chính về nghiệp vụ/quyền xác định; **25 còn thiếu oracle chính**.
+- Cả 32 case còn thiếu status/response schema chính xác; chưa xác nhận sẵn sàng Execute.
+- **Chưa đạt mục tiêu 35**: thiếu 3 bản nháp, đồng thời cần hoàn thiện các oracle TBD. Nguyên nhân được ghi rõ trong file.
+- Mọi request mục tiêu, hỗ trợ và khôi phục dự kiến đều có `X-Student-Id: 23120274`.
+
+Đã ghi nối tiếp [AI Audit Report](/E:/KiemThu/HW06/audit/ai-audit-report.md). Chưa thực hiện bước 7, Human Audit, Extend, Execute hoặc phân tích implementation. Tôi dừng để bạn review.
+````
+
+## Tương tác 14
+
+### Tên công cụ AI
+
+ChatGPT – Codex.
+
+### Ngày và giờ
+
+2026-11-27 12:34:40 +07:00 (Asia/Saigon). Đây là thời điểm lập bản ghi trong quá trình xử lý lấy từ đồng hồ hệ thống, không phải timestamp gửi prompt hoặc hoàn tất phản hồi.
+
+### Prompt đầy đủ của sinh viên
+
+````text
+Sử dụng Agent Skill `api-test-generator` để hiệu chỉnh kết quả bước 6.
+
+Yêu cầu:
+
+- Giữ nguyên `06-ai-generated-test-cases.md` làm bản AI-generated gốc.
+- Rà soát lại Test Oracle. Không đánh dấu toàn bộ oracle là TBD chỉ vì thiếu HTTP status hoặc response schema.
+- Tận dụng các hậu điều kiện và bất biến nghiệp vụ có căn cứ từ FR-04, SEC và kết quả bước 1–5.
+- Xem lại oracle của TC-001, 002, 010, 011–014, 024, 026, 030 và 031.
+- Với SQL Injection, phân biệt oracle black-box có thể kiểm chứng với yêu cầu chứng minh Parameterized Query.
+- Rà soát các nhóm DDT. Tách những tình huống có mục tiêu kiểm thử độc lập khi phù hợp.
+- Rà soát coverage để bổ sung các tình huống có ý nghĩa còn thiếu, hướng tới ít nhất 35 test case.
+- Không tự đặt ràng buộc, HTTP status, response schema hoặc ép đủ số lượng bằng case trùng lặp.
+- Giữ TBD đối với những nội dung thực sự chưa đủ căn cứ.
+- Giữ nguyên ID của các case hiện có và cấp ID mới cho các case bổ sung.
+
+Lưu bản AI-generated sau hiệu chỉnh vào `test-cases/api-01/06-ai-generated-test-cases-v2.md`.
+
+Thống kê số lượng test case, oracle xác định, oracle TBD và những thay đổi so với bản gốc.
+
+Chưa thực hiện bước 7, Human Audit, Extend hoặc Execute. Không phân tích implementation.
+
+Tuân thủ AGENTS.md, ghi nhận AI Audit và dừng để tôi review.
+````
+
+### Output đầy đủ của AI
+
+````text
+Tôi sẽ đọc lại hướng dẫn, bản gốc và các phân tích liên quan để hiệu chỉnh oracle, tách các nhóm DDT khi có mục tiêu độc lập và bổ sung coverage có căn cứ. Tôi sẽ giữ nguyên bản gốc cùng ID hiện có, lưu riêng bản `v2` và thống kê các thay đổi.
+
+Bản gốc đã đánh giá một số oracle quá bảo thủ. Tôi sẽ tách yêu cầu nghiệp vụ khỏi các checkpoint HTTP/schema còn thiếu: chẳng hạn, phone hợp lệ phải cập nhật được, phone sai không được ghi thành giá trị hồ sơ không hợp lệ, và dữ liệu giống SQL không được làm đổi hồ sơ người khác hoặc role. Riêng việc chứng minh Parameterized Query vẫn cần bằng chứng bổ sung.
+
+Bản v2 dự kiến có 50 case: giữ ID 001–032 và thêm 033–050. Tôi đã tách các nhóm DDT theo field hoặc bề mặt đầu vào độc lập; không đếm thêm case chỉ vì đổi nhãn kỹ thuật. Hiện có 22 case với oracle nghiệp vụ/black-box xác định và 28 case vẫn thiếu policy; riêng TC-026 còn TBD về Unicode/normalization, không phải vì thiếu status/schema.
+
+Đã lưu [bản AI-generated v2](/E:/KiemThu/HW06/test-cases/api-01/06-ai-generated-test-cases-v2.md). Bản gốc được giữ nguyên, đã đối chiếu SHA-256.
+
+- **50 case:** 22 có oracle chính xác định, 28 còn TBD.
+- Giữ ID 001–032, thêm 033–050; **10 case cũ** được hiệu chỉnh từ TBD sang oracle xác định.
+- Đã tách DDT theo mục tiêu độc lập và phân biệt oracle SQL Injection black-box với chứng minh Parameterized Query.
+- HTTP status/response schema vẫn TBD riêng; chưa đạt 35 case có oracle chính xác định.
+
+Đã ghi nối tiếp [AI Audit Report](/E:/KiemThu/HW06/audit/ai-audit-report.md). Chưa thực hiện bước 7, Human Audit, Extend, Execute hoặc phân tích implementation. Tôi dừng để bạn review.
+````
+
+## Tương tác 15
+
+### Tên công cụ AI
+
+ChatGPT – Codex.
+
+### Ngày và giờ
+
+2026-11-27 12:45:03 +07:00 (Asia/Saigon). Đây là thời điểm lập bản ghi trong quá trình xử lý lấy từ đồng hồ hệ thống, không phải timestamp gửi prompt hoặc hoàn tất phản hồi.
+
+### Prompt đầy đủ của sinh viên
+
+````text
+Sử dụng Agent Skill `api-test-generator` thực hiện bước 7: Quality Check và bàn giao bộ test case API 01.
+Kiểm tra cấu trúc, số lượng, coverage, truy vết yêu cầu, trùng lặp và thống kê những vấn đề còn tồn tại theo Skill.
+Không sửa bản test case AI-generated, không thực hiện Human Audit, không phân loại VALID/INVALID/INCOMPLETE thay sinh viên.
+Lưu kết quả vào `test-cases/api-01/07-quality-check.md`.
+Tuân thủ AGENTS.md, ghi nhận AI Audit và dừng.
+````
+
+### Output đầy đủ của AI
+
+````text
+Tôi sẽ đọc `AGENTS.md`, Skill `api-test-generator` và bộ test case v2, rồi thực hiện bước 7 về cấu trúc, số lượng, coverage, truy vết và trùng lặp. Tôi sẽ lưu nhận xét riêng, giữ nguyên các bản AI-generated và ghi nối tiếp AI Audit.
+
+Kiểm tra hình thức xác nhận v2 có 50 case, đủ 7 trường bắt buộc cho mỗi case; cả 50 đều ghi header sinh viên và truy vết FR-04. Không có ID, tiêu đề hoặc Test Data trùng nguyên văn. Các điểm còn hạn chế là 28 oracle chính TBD, schema response chưa có căn cứ và phương tiện quan sát/fixture chưa xác nhận; tôi sẽ ghi riêng các nhóm có coverage chồng lấn để sinh viên cân nhắc.
+
+Đã lưu [07-quality-check.md](/E:/KiemThu/HW06/test-cases/api-01/07-quality-check.md).
+
+- **50 case**, đủ 7 trường bắt buộc; **22 oracle chính XĐ, 28 TBD**.
+- Không có ID, tiêu đề hoặc Test Data trùng nguyên văn; đã ghi các nhóm chồng lấn cần cân nhắc.
+- Đã kiểm tra coverage, truy vết và liệt kê vấn đề còn tồn tại; chưa xác nhận đủ điều kiện Execute.
+
+Bản gốc và v2 giữ nguyên, đã đối chiếu SHA-256. Đã ghi nối tiếp [AI Audit Report](/E:/KiemThu/HW06/audit/ai-audit-report.md), không thực hiện Human Audit hoặc phân loại thay sinh viên. Tôi dừng tại đây.
+````
