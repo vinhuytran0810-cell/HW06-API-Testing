@@ -1,0 +1,45 @@
+# Source SUT có Git repository riêng
+/eshop-sut/
+
+# Dependencies
+node_modules/
+bower_components/
+vendor/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# File tạm và log
+/tmp/
+/temp/
+*.tmp
+*.temp
+*.log
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Thông tin xác thực và cấu hình bí mật
+.env
+.env.*
+!.env.example
+!.env.sample
+.npmrc
+.netrc
+.git-credentials
+.aws/
+.ssh/
+secrets/
+credentials/
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+credentials.json
+credentials.*.json
+service-account*.json
